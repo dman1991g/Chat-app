@@ -60,7 +60,7 @@ const botReply = [
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["You're welcome"],
-  ["Briyani", "Burger", "Sushi", "Pizza"],
+  ["Bacon", "Burger", "Sushi", "Pizza"],
   ["Dude!"],
   ["Yes?"],
   ["Please stay home"],
