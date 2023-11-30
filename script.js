@@ -1,20 +1,21 @@
 const userMessage = [
   ["hi", "hey", "hello"],
   ["sure", "yes", "no"],
-  ["are you a genius", "are you nerd", "are you intelligent"],
+  ["are you a genius", "are you nerd", "are you smart"],
+  ["i hate you", "i dont like you"],
   ["how are you", "how is life", "how are things", "how are you doing"],
   ["what are you doing", "what is going on", "what is up"],
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
   ["who created you", "who made you", "who is your creator"],
-
   [
     "your name please",
     "your name",
     "may i know your name",
     "what is your name",
-    "what do you call yourself"
+    "what call yourself"
   ],
+  ["i love you"],
   ["happy", "good", "fun", "wonderful", "fantastic", "cool", "very good"],
   ["bad", "bored", "tired"],
   ["help me", "tell me story", "tell me joke"],
@@ -32,27 +33,28 @@ const botReply = [
   ["Hello!", "Hi!", "Hey!", "Hi there!"],
   ["Okay"],
   ["Yes I am! "],
+  ["I'm sorry about that. But I like you dude."],
   [
     "Fine... how are you?",
     "Pretty well, how are you?",
     "Fantastic, how are you?"
   ],
   ["Getting better. There?", "Somewhat okay!", "Yeah fine. Better stay home!"],
-
   [
     "Nothing much",
     "About to go to sleep",
     "Can you guess?",
+    "I don't know actually"
   ],
-  ["I was made on november 29 2023."],
+  ["I was created today."],
   ["I am just a bot", "I am a bot. What are you?"],
-  ["Daniel Graham and Terrance Rosales"],
-  ["I wasn't given a name", "I don't have a name"],
+  ["Daniel Graham"],
+  ["I am nameless", "I don't have a name yet"],
+  ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["You're welcome"],
-  [ "Pizza"],
   ["Dude!"],
   ["Yes?"],
   ["Please stay home"],
@@ -61,17 +63,14 @@ const botReply = [
   ["Sorry for that. Let's chat!"],
   ["Take some rest, Dude!"]
 ];
-
 const alternative = [
-  "Same here.",
+  "Same here, dude.",
   "That's cool! Go on...",
   "Dude...",
-  "Ask something else...",
+  "Ask me something else...",
   "Hey, I'm listening..."
 ];
-
 const synth = window.speechSynthesis;
-
 function voiceControl(string) {
   let u = new SpeechSynthesisUtterance(string);
   u.text = string;
@@ -81,7 +80,6 @@ function voiceControl(string) {
   u.pitch = 1;
   synth.speak(u);
 }
-
 function sendMessage() {
   const inputField = document.getElementById("input");
   let input = inputField.value.trim();
@@ -98,12 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
 function output(input) {
   let product;
-
   let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
-
   text = text
     .replace(/[\W_]/g, " ")
     .replace(/ a /g, " ")
@@ -112,15 +107,12 @@ function output(input) {
     .replace(/please /g, "")
     .replace(/ please/g, "")
     .trim();
-
   let comparedText = compare(userMessage, botReply, text);
-
   product = comparedText
     ? comparedText
     : alternative[Math.floor(Math.random() * alternative.length)];
   addChat(input, product);
 }
-
 function compare(triggerArray, replyArray, string) {
   let item;
   for (let x = 0; x < triggerArray.length; x++) {
@@ -135,12 +127,12 @@ function compare(triggerArray, replyArray, string) {
   if (item) return item;
   else return containMessageCheck(string);
 }
-
 function containMessageCheck(string) {
   let expectedReply = [
     [
-      "Good Bye",
+      "Good Bye, dude",
       "Bye, See you!",
+      "Dude, Bye. Take care of your health in this situation."
     ],
     ["Good Night, dude", "Have a sound sleep", "Sweet dreams"],
     ["Have a pleasant evening!", "Good evening too", "Evening!"],
@@ -170,7 +162,6 @@ function addChat(input, product) {
   userDiv.classList.add("message");
   userDiv.innerHTML = `<span id="user-response">${input}</span>`;
   mainDiv.appendChild(userDiv);
-
   let botDiv = document.createElement("div");
   botDiv.id = "bot";
   botDiv.classList.add("message");
@@ -180,3 +171,10 @@ function addChat(input, product) {
   scroll.scrollTop = scroll.scrollHeight;
   voiceControl(product);
 }
+
+
+
+
+
+
+
