@@ -8,8 +8,7 @@ const userMessage = [
   ["what are you doing", "what is going on", "what is up"],
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
-  ["who created you", "who made you", "who is your creator"],
-  [
+  ["who created you", "who made you", "who is your creator",
     "your name please",
     "your name",
     "may i know your name",
