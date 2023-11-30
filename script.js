@@ -1,9 +1,10 @@
 const userMessage = [
   ["hi", "hey", "hello"],
   ["sure", "yes", "no"],
-  ["are you a genius", "are you nerd", "are you smart"],
+  ["are you genious", "are you nerd", "are you intelligent"],
   ["i hate you", "i dont like you"],
   ["how are you", "how is life", "how are things", "how are you doing"],
+  ["how is corona", "how is covid 19", "how is covid19 situation"],
   ["what are you doing", "what is going on", "what is up"],
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
@@ -24,6 +25,7 @@ const userMessage = [
   ["what should i eat today"],
   ["bro"],
   ["what", "why", "how", "where", "when"],
+  ["corona", "covid19", "coronavirus"],
   ["you are funny"],
   ["i dont know"],
   ["boring"],
@@ -46,15 +48,17 @@ const botReply = [
     "Can you guess?",
     "I don't know actually"
   ],
-  ["I was created today."],
+  ["I was made today."],
   ["I am just a bot", "I am a bot. What are you?"],
   ["Daniel Graham"],
-  ["I am nameless", "I don't have a name yet"],
+  ["I am nameless", "I don't have a name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
+  ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["You're welcome"],
+  ["Cheese fries", "Burger", "Sushi", "Pizza"],
   ["Dude!"],
   ["Yes?"],
   ["Please stay home"],
@@ -67,7 +71,7 @@ const alternative = [
   "Same here, dude.",
   "That's cool! Go on...",
   "Dude...",
-  "Ask me something else...",
+  "Ask something else...",
   "Hey, I'm listening..."
 ];
 const synth = window.speechSynthesis;
