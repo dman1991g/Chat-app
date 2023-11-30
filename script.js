@@ -9,6 +9,7 @@ const userMessage = [
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
   ["who created you", "who made you", "who is your creator"],
+
   [
     "your name please",
     "your name",
@@ -42,6 +43,7 @@ const botReply = [
     "Fantastic, how are you?"
   ],
   ["Getting better. There?", "Somewhat okay!", "Yeah fine. Better stay home!"],
+
   [
     "Nothing much",
     "About to go to sleep",
@@ -50,7 +52,7 @@ const botReply = [
   ],
   ["I am always young."],
   ["I am just a bot", "I am a bot. What are you?"],
-  ["Daniel Graham"],
+  ["Sabitha Kuppusamy"],
   ["I am nameless", "I don't have a name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
@@ -67,6 +69,7 @@ const botReply = [
   ["Sorry for that. Let's chat!"],
   ["Take some rest, Dude!"]
 ];
+
 const alternative = [
   "Same here, dude.",
   "That's cool! Go on...",
@@ -74,7 +77,9 @@ const alternative = [
   "Ask something else...",
   "Hey, I'm listening..."
 ];
+
 const synth = window.speechSynthesis;
+
 function voiceControl(string) {
   let u = new SpeechSynthesisUtterance(string);
   u.text = string;
@@ -84,6 +89,7 @@ function voiceControl(string) {
   u.pitch = 1;
   synth.speak(u);
 }
+
 function sendMessage() {
   const inputField = document.getElementById("input");
   let input = inputField.value.trim();
@@ -100,9 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 function output(input) {
   let product;
+
   let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
+
   text = text
     .replace(/[\W_]/g, " ")
     .replace(/ a /g, " ")
@@ -111,12 +120,15 @@ function output(input) {
     .replace(/please /g, "")
     .replace(/ please/g, "")
     .trim();
+
   let comparedText = compare(userMessage, botReply, text);
+
   product = comparedText
     ? comparedText
     : alternative[Math.floor(Math.random() * alternative.length)];
   addChat(input, product);
 }
+
 function compare(triggerArray, replyArray, string) {
   let item;
   for (let x = 0; x < triggerArray.length; x++) {
@@ -131,6 +143,7 @@ function compare(triggerArray, replyArray, string) {
   if (item) return item;
   else return containMessageCheck(string);
 }
+
 function containMessageCheck(string) {
   let expectedReply = [
     [
@@ -166,6 +179,7 @@ function addChat(input, product) {
   userDiv.classList.add("message");
   userDiv.innerHTML = `<span id="user-response">${input}</span>`;
   mainDiv.appendChild(userDiv);
+
   let botDiv = document.createElement("div");
   botDiv.id = "bot";
   botDiv.classList.add("message");
@@ -174,3 +188,4 @@ function addChat(input, product) {
   var scroll = document.getElementById("message-section");
   scroll.scrollTop = scroll.scrollHeight;
   voiceControl(product);
+}
