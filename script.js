@@ -2,9 +2,7 @@ const userMessage = [
   ["hi", "hey", "hello"],
   ["sure", "yes", "no"],
   ["are you a genius", "are you nerd", "are you intelligent"],
-  ["i hate you", "i dont like you"],
   ["how are you", "how is life", "how are things", "how are you doing"],
-  ["how is corona", "how is covid 19", "how is covid19 situation"],
   ["what are you doing", "what is going on", "what is up"],
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
@@ -15,9 +13,8 @@ const userMessage = [
     "your name",
     "may i know your name",
     "what is your name",
-    "what call yourself"
+    "what do you call yourself"
   ],
-  ["i love you"],
   ["happy", "good", "fun", "wonderful", "fantastic", "cool", "very good"],
   ["bad", "bored", "tired"],
   ["help me", "tell me story", "tell me joke"],
@@ -26,7 +23,6 @@ const userMessage = [
   ["what should i eat today"],
   ["bro"],
   ["what", "why", "how", "where", "when"],
-  ["corona", "covid19", "coronavirus"],
   ["you are funny"],
   ["i dont know"],
   ["boring"],
@@ -36,7 +32,6 @@ const botReply = [
   ["Hello!", "Hi!", "Hey!", "Hi there!"],
   ["Okay"],
   ["Yes I am! "],
-  ["I'm sorry about that. But I like you dude."],
   [
     "Fine... how are you?",
     "Pretty well, how are you?",
@@ -52,9 +47,8 @@ const botReply = [
   ],
   ["I am always young."],
   ["I am just a bot", "I am a bot. What are you?"],
-  ["Daniel Graham"],
+  ["Daniel Graham and Terrance Rosales"],
   ["I am nameless", "I don't have a name"],
-  ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
   ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
   ["What about?", "Once upon a time..."],
@@ -71,7 +65,7 @@ const botReply = [
 ];
 
 const alternative = [
-  "Same here, dude.",
+  "Same here.",
   "That's cool! Go on...",
   "Dude...",
   "Ask something else...",
@@ -147,9 +141,8 @@ function compare(triggerArray, replyArray, string) {
 function containMessageCheck(string) {
   let expectedReply = [
     [
-      "Good Bye, dude",
+      "Good Bye",
       "Bye, See you!",
-      "Dude, Bye. Take care of your health in this situation."
     ],
     ["Good Night, dude", "Have a sound sleep", "Sweet dreams"],
     ["Have a pleasant evening!", "Good evening too", "Evening!"],
