@@ -50,7 +50,6 @@ const botReply = [
   ["I was made today."],
   ["I am just a bot", "I am a bot. What are you?"],
   ["Daniel Graham"],
-  ["I am nameless", "I don't have a name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
   ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
