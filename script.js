@@ -52,7 +52,7 @@ const botReply = [
   ],
   ["I was made yesterday."],
   ["I am just a bot", "I am a bot. What are you?"],
-  ["Daniel Graham"],
+  ["Daniel Graham and Terrance rosales"],
   ["I am amazing", "I don't have a good name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
