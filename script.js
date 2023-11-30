@@ -43,7 +43,6 @@ const botReply = [
     "Nothing much",
     "About to go to sleep",
     "Can you guess?",
-    "I don't know actually"
   ],
   ["I was made on november 29 2023."],
   ["I am just a bot", "I am a bot. What are you?"],
@@ -69,7 +68,6 @@ const alternative = [
   "Dude...",
   "Ask something else...",
   "Hey, I'm listening..."
-  "I'm not sure...."
 ];
 
 const synth = window.speechSynthesis;
