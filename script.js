@@ -45,16 +45,15 @@ const botReply = [
     "Can you guess?",
     "I don't know actually"
   ],
-  ["I am always young."],
+  ["I was made on november 29 2023."],
   ["I am just a bot", "I am a bot. What are you?"],
   ["Daniel Graham and Terrance Rosales"],
-  ["I am nameless", "I don't have a name"],
+  ["I wasn't given a name", "I don't have a name"],
   ["Have you ever felt bad?", "Glad to hear it"],
-  ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["You're welcome"],
-  ["Briyani", "Burger", "Sushi", "Pizza"],
+  [ "Pizza"],
   ["Dude!"],
   ["Yes?"],
   ["Please stay home"],
@@ -70,6 +69,7 @@ const alternative = [
   "Dude...",
   "Ask something else...",
   "Hey, I'm listening..."
+  "I'm not sure...."
 ];
 
 const synth = window.speechSynthesis;
