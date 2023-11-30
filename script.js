@@ -4,7 +4,7 @@ const userMessage = [
   ["are you a genius", "are you nerd", "are you intelligent"],
   ["i hate you", "i dont like you"],
   ["how are you", "how is life", "how are things", "how are you doing"],
-  ["how is corona", "how is covid 19", "how is covid19 situation"],
+  ["how is everyone", "how is your family", "how is work situation"],
   ["what are you doing", "what is going on", "what is up"],
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
