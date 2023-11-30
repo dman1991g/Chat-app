@@ -48,7 +48,7 @@ const botReply = [
     "Can you guess?",
     "I don't know actually"
   ],
-  ["I was made recently."],
+  ["I was made today."],
   ["I am just a bot", "I am a bot. What are you?"],
   ["Daniel Graham"],
   ["I am nameless", "I don't have a name"],
@@ -58,7 +58,7 @@ const botReply = [
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["You're welcome"],
-  ["Cheese fries", "Burger", "Sushi", "Pizza"],
+  ["Fries", "Burger", "Sushi", "Pizza"],
   ["Dude!"],
   ["Yes?"],
   ["Please stay home"],
