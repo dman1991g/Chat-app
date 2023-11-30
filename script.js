@@ -50,10 +50,10 @@ const botReply = [
     "Can you guess?",
     "I don't know actually"
   ],
-  ["I am always young."],
+  ["I was made yesterday."],
   ["I am just a bot", "I am a bot. What are you?"],
   ["Daniel Graham"],
-  ["I am nameless", "I don't have a name"],
+  ["I am amazing", "I don't have a good name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
   ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
