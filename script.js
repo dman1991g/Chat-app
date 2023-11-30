@@ -1,14 +1,15 @@
 const userMessage = [
   ["hi", "hey", "hello"],
   ["sure", "yes", "no"],
-  ["are you genious", "are you nerd", "are you intelligent"],
+  ["are you a genius", "are you a nerd", "are you intelligent"],
   ["i hate you", "i dont like you"],
   ["how are you", "how is life", "how are things", "how are you doing"],
-  ["how is corona", "how is covid 19", "how is covid19 situation"],
+  ["how is yugioh", "how is yugioh", "how is the yugioh situation"],
   ["what are you doing", "what is going on", "what is up"],
   ["how old are you"],
   ["who are you", "are you human", "are you bot", "are you human or bot"],
-  ["who created you", "who made you", "who is your creator",
+  ["who created you", "who made you", "who is your creator"],
+  [
     "your name please",
     "your name",
     "may i know your name",
@@ -24,7 +25,7 @@ const userMessage = [
   ["what should i eat today"],
   ["bro"],
   ["what", "why", "how", "where", "when"],
-  ["corona", "covid19", "coronavirus"],
+  ["yugioh", "yugioh", "yugioh"],
   ["you are funny"],
   ["i dont know"],
   ["boring"],
@@ -47,16 +48,17 @@ const botReply = [
     "Can you guess?",
     "I don't know actually"
   ],
-  ["I was made today."],
+  ["I was made not long ago."],
   ["I am just a bot", "I am a bot. What are you?"],
   ["Daniel Graham"],
+  ["I am nameless", "I don't have a name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
   ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["You're welcome"],
-  ["Cheese fries", "Burger", "Sushi", "Pizza"],
+  ["cheese fries", "Burger", "Sushi", "Pizza"],
   ["Dude!"],
   ["Yes?"],
   ["Please stay home"],
@@ -172,11 +174,3 @@ function addChat(input, product) {
   var scroll = document.getElementById("message-section");
   scroll.scrollTop = scroll.scrollHeight;
   voiceControl(product);
-}
-
-
-
-
-
-
-
