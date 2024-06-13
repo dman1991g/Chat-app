@@ -29,8 +29,10 @@ const botReply = [
   ["Seeking advice on your career path, job opportunities, or freelancing?"],
   ["Interested in getting feedback on your portfolio or code?"],
   ["Looking for guidance on your learning path or career development?"],
-  ["Interested in joining a community, forum, or networking with others?"]
+  ["Interested in joining a community, forum, or networking with others?"],
+  ["Sure! Here's a simple HTML template to get you started:\n<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n<title>Your Title Here</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>This is a simple HTML template.</p>\n</body>\n</html>"]
 ];
+
 
 const alternative = [
   "Could you please provide more details?",
