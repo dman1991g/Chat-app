@@ -29,10 +29,8 @@ const botReply = [
   ["Seeking advice on your career path, job opportunities, or freelancing?"],
   ["Interested in getting feedback on your portfolio or code?"],
   ["Looking for guidance on your learning path or career development?"],
-  ["Interested in joining a community, forum, or networking with others?"],
-  ["Sure! Here's a simple HTML template to get you started:\n<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n<title>Your Title Here</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>This is a simple HTML template.</p>\n</body>\n</html>"]
+  ["Interested in joining a community, forum, or networking with others?"]
 ];
-
 
 const alternative = [
   "Could you please provide more details?",
@@ -42,115 +40,84 @@ const alternative = [
   "I'm listening. How can I help?"
 ];
 
-const synth = window.speechSynthesis;
-
-function voiceControl(string) {
-  let u = new SpeechSynthesisUtterance(string);
-  u.text = string;
-  u.lang = "en-aus";
-  u.volume = 1;
-  u.rate = 1;
-  u.pitch = 1;
-  synth.speak(u);
-}
-
-function sendMessage() {
-  const inputField = document.getElementById("input");
-  let input = inputField.value.trim();
-  input != "" && output(input);
-  inputField.value = "";
-}
-document.addEventListener("DOMContentLoaded", () => {
-  const inputField = document.getElementById("input");
-  inputField.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {
-      let input = inputField.value.trim();
-      input != "" && output(input);
-      inputField.value = "";
-    }
-  });
-});
-
 function output(input) {
-  let product;
+    let product;
 
-  let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
+    let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
 
-  text = text
-    .replace(/[\W_]/g, " ")
-    .replace(/ a /g, " ")
-    .replace(/i feel /g, "")
-    .replace(/whats/g, "what is")
-    .replace(/please /g, "")
-    .replace(/ please/g, "")
-    .trim();
+    text = text
+        .replace(/[\W_]/g, " ")
+        .replace(/ a /g, " ")
+        .replace(/i feel /g, "")
+        .replace(/whats/g, "what is")
+        .replace(/please /g, "")
+        .replace(/ please/g, "")
+        .trim();
 
-  let comparedText = compare(userMessage, botReply, text);
+    let comparedText = compare(userMessage, botReply, text);
+    product = comparedText ? comparedText : alternative[Math.floor(Math.random() * alternative.length)];
 
-  product = comparedText
-    ? comparedText
-    : alternative[Math.floor(Math.random() * alternative.length)];
-  addChat(input, product);
+    addChat(input, product);
 }
 
 function compare(triggerArray, replyArray, string) {
-  let item;
-  for (let x = 0; x < triggerArray.length; x++) {
-    for (let y = 0; y < replyArray.length; y++) {
-      if (triggerArray[x][y] == string) {
-        items = replyArray[x];
-        item = items[Math.floor(Math.random() * items.length)];
-      }
+    let item;
+    for (let x = 0; x < triggerArray.length; x++) {
+        for (let y = 0; y < replyArray.length; y++) {
+            if (triggerArray[x][y] == string) {
+                items = replyArray[x];
+                item = items[Math.floor(Math.random() * items.length)];
+            }
+        }
     }
-  }
-  //containMessageCheck(string);
-  if (item) return item;
-  else return containMessageCheck(string);
+    //containMessageCheck(string);
+    if (item) return item;
+    else return containMessageCheck(string);
 }
 
 function containMessageCheck(string) {
-  let expectedReply = [
-  [
-    "Feel free to ask if you have any more questions!",
-    "Happy coding! Let me know if you need further assistance.",
-    "Keep learning and exploring! Bye for now."
-  ],
-  ["Rest well and come back refreshed for more coding adventures!"],
-  ["Enjoy your evening! Don't hesitate to reach out if you need help."],
-  ["Have a productive day of coding ahead!"],
-  ["Hope you have a productive afternoon!"]
-];
-let expectedMessage = [
-  ["bye", "tc", "take care"],
-  ["night", "good night"],
-  ["evening", "good evening"],
-  ["morning", "good morning"],
-  ["noon"]
-];
+    let expectedReply = [
+        [
+            "Feel free to ask if you have any more questions!",
+            "Happy coding! Let me know if you need further assistance.",
+            "Keep learning and exploring! Bye for now."
+        ],
+        ["Rest well and come back refreshed for more coding adventures!"],
+        ["Enjoy your evening! Don't hesitate to reach out if you need help."],
+        ["Have a productive day of coding ahead!"],
+        ["Hope you have a productive afternoon!"]
+    ];
+    let expectedMessage = [
+        ["bye", "tc", "take care"],
+        ["night", "good night"],
+        ["evening", "good evening"],
+        ["morning", "good morning"],
+        ["noon"]
+    ];
 
-  let item;
-  for (let x = 0; x < expectedMessage.length; x++) {
-    if (expectedMessage[x].includes(string)) {
-      items = expectedReply[x];
-      item = items[Math.floor(Math.random() * items.length)];
+    let item;
+    for (let x = 0; x < expectedMessage.length; x++) {
+        if (expectedMessage[x].includes(string)) {
+            items = expectedReply[x];
+            item = items[Math.floor(Math.random() * items.length)];
+        }
     }
-  }
-  return item;
+    return item;
 }
-function addChat(input, product) {
-  const mainDiv = document.getElementById("message-section");
-  let userDiv = document.createElement("div");
-  userDiv.id = "user";
-  userDiv.classList.add("message");
-  userDiv.innerHTML = `<span id="user-response">${input}</span>`;
-  mainDiv.appendChild(userDiv);
 
-  let botDiv = document.createElement("div");
-  botDiv.id = "bot";
-  botDiv.classList.add("message");
-  botDiv.innerHTML = `<span id="bot-response">${product}</span>`;
-  mainDiv.appendChild(botDiv);
-  var scroll = document.getElementById("message-section");
-  scroll.scrollTop = scroll.scrollHeight;
-  voiceControl(product);
+function addChat(input, product) {
+    const mainDiv = document.getElementById("message-section");
+    let userDiv = document.createElement("div");
+    userDiv.id = "user";
+    userDiv.classList.add("message");
+    userDiv.innerHTML = `<span id="user-response">${input}</span>`;
+    mainDiv.appendChild(userDiv);
+
+    let botDiv = document.createElement("div");
+    botDiv.id = "bot";
+    botDiv.classList.add("message");
+    botDiv.innerHTML = `<span id="bot-response">${product}</span>`;
+    mainDiv.appendChild(botDiv);
+    var scroll = document.getElementById("message-section");
+    scroll.scrollTop = scroll.scrollHeight;
 }
