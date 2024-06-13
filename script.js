@@ -29,10 +29,7 @@ const botReply = [
   ["Seeking advice on your career path, job opportunities, or freelancing?"],
   ["Interested in getting feedback on your portfolio or code?"],
   ["Looking for guidance on your learning path or career development?"],
-  ["Interested in joining a community, forum, or networking with others?"],
-  ["Sure! Here's a simple HTML template to get you started:\n<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n<title>Your Title Here</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>This is a simple HTML template.</p>\n</body>\n</html>"]
-];
-
+  ["Interested in joining a community, forum, or networking with others?"]
 ];
 
 const alternative = [
@@ -43,98 +40,74 @@ const alternative = [
   "I'm listening. How can I help?"
 ];
 
-// Define triggers for OpenAI
-const openaiTriggers = ["tutorial", "resource", "guide", "debug", "error", "issue", "web design", "user experience", "UI/UX", "responsive design", "mobile-friendly", "portfolio", "resume", "personal website", "git", "version control", "repository", "hosting", "deployment", "server", "career", "job", "freelance", "portfolio review", "code review", "learning path", "career advice", "community", "forum", "networking"];
+const synth = window.speechSynthesis;
 
-// Function to check if user input triggers OpenAI request
-function shouldInvokeOpenAI(input) {
-    return openaiTriggers.some(trigger => input.includes(trigger));
+function voiceControl(string) {
+  let u = new SpeechSynthesisUtterance(string);
+  u.text = string;
+  u.lang = "en-aus";
+  u.volume = 1;
+  u.rate = 1;
+  u.pitch = 1;
+  synth.speak(u);
 }
 
-// Function to make API request to OpenAI
-async function getOpenAIResponse(input) {
-    // Define your OpenAI API key
-    const apiKey = 'your-api-key';
-
-    // Define the OpenAI API endpoint
-    const apiUrl = 'https://api.openai.com/v1/completions';
-
-    // Define the data to send in the request body
-    const data = {
-        model: 'text-davinci-003', // Specify the model you want to use
-        prompt: input, // Pass the user input as the prompt
-        max_tokens: 50 // Specify the maximum number of tokens in the response
-    };
-
-    try {
-        // Make the API request using fetch
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}` // Include your API key in the Authorization header
-            },
-            body: JSON.stringify(data) // Convert the data object to JSON format
-        });
-
-        // Parse the JSON response
-        const responseData = await response.json();
-
-        // Extract the generated text from the response
-        const generatedText = responseData.choices[0].text.trim();
-
-        return generatedText;
-    } catch (error) {
-        console.error('Error making API request to OpenAI:', error);
-        // Return an error message or handle the error as needed
-        return 'An error occurred while processing your request. Please try again later.';
+function sendMessage() {
+  const inputField = document.getElementById("input");
+  let input = inputField.value.trim();
+  input != "" && output(input);
+  inputField.value = "";
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const inputField = document.getElementById("input");
+  inputField.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {
+      let input = inputField.value.trim();
+      input != "" && output(input);
+      inputField.value = "";
     }
-}
+  });
+});
 
 function output(input) {
-    let product;
+  let product;
 
-    let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
+  let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
 
-    text = text
-        .replace(/[\W_]/g, " ")
-        .replace(/ a /g, " ")
-        .replace(/i feel /g, "")
-        .replace(/whats/g, "what is")
-        .replace(/please /g, "")
-        .replace(/ please/g, "")
-        .trim();
+  text = text
+    .replace(/[\W_]/g, " ")
+    .replace(/ a /g, " ")
+    .replace(/i feel /g, "")
+    .replace(/whats/g, "what is")
+    .replace(/please /g, "")
+    .replace(/ please/g, "")
+    .trim();
 
-    // Check if user input triggers an OpenAI request
-    if (shouldInvokeOpenAI(text)) {
-        // Make request to OpenAI API and get response
-        product = await getOpenAIResponse(input);
-    } else {
-        // Continue using predefined responses
-        let comparedText = compare(userMessage, botReply, text);
-        product = comparedText ? comparedText : alternative[Math.floor(Math.random() * alternative.length)];
-    }
+  let comparedText = compare(userMessage, botReply, text);
 
-    addChat(input, product);
+  product = comparedText
+    ? comparedText
+    : alternative[Math.floor(Math.random() * alternative.length)];
+  addChat(input, product);
 }
 
 function compare(triggerArray, replyArray, string) {
-    let item;
-    for (let x = 0; x < triggerArray.length; x++) {
-        for (let y = 0; y < replyArray.length; y++) {
-            if (triggerArray[x][y] == string) {
-                items = replyArray[x];
-                item = items[Math.floor(Math.random() * items.length)];
-            }
-        }
+  let item;
+  for (let x = 0; x < triggerArray.length; x++) {
+    for (let y = 0; y < replyArray.length; y++) {
+      if (triggerArray[x][y] == string) {
+        items = replyArray[x];
+        item = items[Math.floor(Math.random() * items.length)];
+      }
     }
-    //containMessageCheck(string);
-    if (item) return item;
-    else return containMessageCheck(string);
+  }
+  //containMessageCheck(string);
+  if (item) return item;
+  else return containMessageCheck(string);
 }
 
 function containMessageCheck(string) {
-let expectedReply = [
+  let expectedReply = [
   [
     "Feel free to ask if you have any more questions!",
     "Happy coding! Let me know if you need further assistance.",
@@ -153,32 +126,29 @@ let expectedMessage = [
   ["noon"]
 ];
 
-    let item;
-    for (let x = 0; x < expectedMessage.length; x++) {
-        if (expectedMessage[x].includes(string)) {
-            items = expectedReply[x];
-            item = items[Math.floor(Math.random() * items.length)];
-        }
+  let item;
+  for (let x = 0; x < expectedMessage.length; x++) {
+    if (expectedMessage[x].includes(string)) {
+      items = expectedReply[x];
+      item = items[Math.floor(Math.random() * items.length)];
     }
-    return item;
+  }
+  return item;
 }
-
 function addChat(input, product) {
-    const mainDiv = document.getElementById("message-section");
-    let userDiv = document.createElement("div");
-    userDiv.id = "user";
-    userDiv.classList.add("message");
-    userDiv.innerHTML = `<span id="user-response">${input}</span>`;
-    mainDiv.appendChild(userDiv);
+  const mainDiv = document.getElementById("message-section");
+  let userDiv = document.createElement("div");
+  userDiv.id = "user";
+  userDiv.classList.add("message");
+  userDiv.innerHTML = `<span id="user-response">${input}</span>`;
+  mainDiv.appendChild(userDiv);
 
-    let botDiv = document.createElement("div");
-    botDiv.id = "bot";
-    botDiv.classList.add("message");
-    botDiv.innerHTML = `<span id="bot-response">${product}</span>`;
-    mainDiv.appendChild(botDiv);
-    var scroll = document.getElementById("message-section");
-    scroll.scrollTop = scroll.scrollHeight;
+  let botDiv = document.createElement("div");
+  botDiv.id = "bot";
+  botDiv.classList.add("message");
+  botDiv.innerHTML = `<span id="bot-response">${product}</span>`;
+  mainDiv.appendChild(botDiv);
+  var scroll = document.getElementById("message-section");
+  scroll.scrollTop = scroll.scrollHeight;
+  voiceControl(product);
 }
-
-// Example usage
-output("I need help with CSS");
