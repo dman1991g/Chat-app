@@ -1,81 +1,43 @@
 const userMessage = [
-  ["hi", "hey", "hello"],
-  ["sure", "yes", "no"],
-  ["are you a genius", "are you nerd", "are you intelligent"],
-  ["i hate you", "i dont like you"],
-  ["how are you", "how is life", "how are things", "how are you doing"],
-  ["how is everyone", "how is your family", "how is work situation"],
-  ["what are you doing", "what is going on", "what is up"],
-  ["how old are you"],
-  ["who are you", "are you human", "are you bot", "are you human or bot"],
-  ["who created you", "who made you", "who is your creator"],
-
-  [
-    "your name please",
-    "your name",
-    "may i know your name",
-    "what is your name",
-    "what call yourself"
-  ],
-  ["i love you"],
-  ["happy", "good", "fun", "wonderful", "fantastic", "cool", "very good"],
-  ["bad", "bored", "tired"],
-  ["help me", "tell me story", "tell me joke"],
-  ["ah", "ok", "okay", "nice", "welcome"],
-  ["thanks", "thank you"],
-  ["what should i eat today"],
-  ["bro"],
-  ["what", "why", "how", "where", "when"],
-  ["corona", "covid19", "coronavirus"],
-  ["you are funny"],
-  ["i dont know"],
-  ["boring"],
-  ["im tired"]
+  ["html", "css", "javascript"],
+  ["frontend", "backend", "fullstack"],
+  ["framework", "library", "tool"],
+  ["tutorial", "resource", "guide"],
+  ["debug", "error", "issue"],
+  ["web design", "user experience", "UI/UX"],
+  ["responsive design", "mobile-friendly"],
+  ["portfolio", "resume", "personal website"],
+  ["git", "version control", "repository"],
+  ["hosting", "deployment", "server"],
+  ["career", "job", "freelance"],
+  ["portfolio review", "code review"],
+  ["learning path", "career advice"],
+  ["community", "forum", "networking"]
 ];
-const botReply = [
-  ["Hello!", "Hi!", "Hey!", "Hi there!"],
-  ["Okay"],
-  ["Yes I am! "],
-  ["I'm sorry about that. But I like you dude."],
-  [
-    "Fine... how are you?",
-    "Pretty well, how are you?",
-    "Fantastic, how are you?"
-  ],
-  ["Getting better. There?", "Somewhat okay!", "Yeah fine. Better stay home!"],
 
-  [
-    "Nothing much",
-    "About to go to sleep",
-    "Can you guess?",
-    "I don't know actually"
-  ],
-  ["I was made yesterday."],
-  ["I am just a bot", "I am a bot. What are you?"],
-  ["Daniel Graham and Terrance rosales"],
-  ["I am amazing", "I don't have a good name"],
-  ["I love you too", "Me too"],
-  ["Have you ever felt bad?", "Glad to hear it"],
-  ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
-  ["What about?", "Once upon a time..."],
-  ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
-  ["You're welcome"],
-  ["Bacon", "Burger", "Sushi", "Pizza"],
-  ["Dude!"],
-  ["Yes?"],
-  ["Please stay home"],
-  ["Glad to hear it"],
-  ["Say something interesting"],
-  ["Sorry for that. Let's chat!"],
-  ["Take some rest, Dude!"]
+const botReply = [
+  ["Great! Let's talk about HTML/CSS/JavaScript. What do you need help with?"],
+  ["Are you focusing on frontend, backend, or fullstack development?"],
+  ["Are you looking for a framework, library, or tool recommendation?"],
+  ["Do you need a tutorial, resource, or guide on a specific topic?"],
+  ["Facing any debugging issues? Let's tackle them together."],
+  ["Interested in web design, user experience, or UI/UX principles?"],
+  ["Need help with making your website responsive or mobile-friendly?"],
+  ["Thinking about building a portfolio, resume, or personal website?"],
+  ["Want to learn more about Git, version control, or managing repositories?"],
+  ["Questions about hosting, deployment, or setting up a server?"],
+  ["Seeking advice on your career path, job opportunities, or freelancing?"],
+  ["Interested in getting feedback on your portfolio or code?"],
+  ["Looking for guidance on your learning path or career development?"],
+  ["Interested in joining a community, forum, or networking with others?"]
 ];
 
 const alternative = [
-  "Same here, dude.",
-  "That's cool! Go on...",
-  "Dude...",
-  "Ask something else...",
-  "Hey, I'm listening..."
+  "Could you please provide more details?",
+  "Let's dive deeper into that topic.",
+  "I'm here to assist you!",
+  "Feel free to ask anything else.",
+  "I'm listening. How can I help?"
 ];
 
 const synth = window.speechSynthesis;
@@ -145,24 +107,25 @@ function compare(triggerArray, replyArray, string) {
 }
 
 function containMessageCheck(string) {
-  let expectedReply = [
-    [
-      "Good Bye, dude",
-      "Bye, See you!",
-      "Dude, Bye. Take care of your health in this situation."
-    ],
-    ["Good Night, dude", "Have a sound sleep", "Sweet dreams"],
-    ["Have a pleasant evening!", "Good evening too", "Evening!"],
-    ["Good morning, Have a great day!", "Morning, dude!"],
-    ["Good Afternoon", "Noon, dude!", "Afternoon, dude!"]
-  ];
-  let expectedMessage = [
-    ["bye", "tc", "take care"],
-    ["night", "good night"],
-    ["evening", "good evening"],
-    ["morning", "good morning"],
-    ["noon"]
-  ];
+let expectedReply = [
+  [
+    "Feel free to ask if you have any more questions!",
+    "Happy coding! Let me know if you need further assistance.",
+    "Keep learning and exploring! Bye for now."
+  ],
+  ["Rest well and come back refreshed for more coding adventures!"],
+  ["Enjoy your evening! Don't hesitate to reach out if you need help."],
+  ["Have a productive day of coding ahead!"],
+  ["Hope you have a productive afternoon!"]
+];
+let expectedMessage = [
+  ["bye", "tc", "take care"],
+  ["night", "good night"],
+  ["evening", "good evening"],
+  ["morning", "good morning"],
+  ["noon"]
+];
+
   let item;
   for (let x = 0; x < expectedMessage.length; x++) {
     if (expectedMessage[x].includes(string)) {
