@@ -29,7 +29,8 @@ const botReply = [
   ["Seeking advice on your career path, job opportunities, or freelancing?"],
   ["Interested in getting feedback on your portfolio or code?"],
   ["Looking for guidance on your learning path or career development?"],
-  ["Interested in joining a community, forum, or networking with others?"]
+  ["Interested in joining a community, forum, or networking with others?"],
+  ["Sure! Here's a simple HTML template to get you started:\n<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n<title>Your Title Here</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>This is a simple HTML template.</p>\n</body>\n</html>"]
 ];
 
 const alternative = [
@@ -54,8 +55,15 @@ function output(input) {
         .replace(/ please/g, "")
         .trim();
 
-    let comparedText = compare(userMessage, botReply, text);
-    product = comparedText ? comparedText : alternative[Math.floor(Math.random() * alternative.length)];
+    // Check if user input triggers an HTML template request
+    if (text.includes("html template") || text.includes("sample html")) {
+        // Respond with the predefined HTML template
+        product = botReply[botReply.length - 1];
+    } else {
+        // Continue using predefined responses
+        let comparedText = compare(userMessage, botReply, text);
+        product = comparedText ? comparedText : alternative[Math.floor(Math.random() * alternative.length)];
+    }
 
     addChat(input, product);
 }
@@ -121,3 +129,33 @@ function addChat(input, product) {
     var scroll = document.getElementById("message-section");
     scroll.scrollTop = scroll.scrollHeight;
 }
+
+const synth = window.speechSynthesis;
+
+function voiceControl(string) {
+    let u = new SpeechSynthesisUtterance(string);
+    u.text = string;
+    u.lang = "en-aus";
+    u.volume = 1;
+    u.rate = 1;
+    u.pitch = 1;
+    synth.speak(u);
+}
+
+function sendMessage() {
+    const inputField = document.getElementById("input");
+    let input = inputField.value.trim();
+    input != "" && output(input);
+    inputField.value = "";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const inputField = document.getElementById("input");
+    inputField.addEventListener("keydown", function (e) {
+        if (e.code === "Enter") {
+            let input = inputField.value.trim();
+            input != "" && output(input);
+            inputField.value = "";
+        }
+    });
+});
